@@ -1,23 +1,25 @@
-
-'use client'
-import Link from 'next/link'
-import { useEffect } from 'react'
-import { initI18n } from '@/lib/i18n'
+// app/page.tsx
 export default function Home() {
-  useEffect(()=>{ initI18n() },[])
   return (
-    <main className="min-h-screen max-w-3xl mx-auto p-6 flex flex-col gap-6">
-      <h1 className="text-4xl font-extrabold">Anaptiras</h1>
-      <p className="text-gray-600">Ghost για την ψυχή · Crew για το γέλιο · Custom για events</p>
-      <div className="flex flex-wrap gap-3">
-        <Link className="px-4 py-2 rounded-xl bg-black text-white" href="/ghost">Ghost</Link>
-        <Link className="px-4 py-2 rounded-xl bg-black text-white" href="/crew">Crew</Link>
-        <Link className="px-4 py-2 rounded-xl bg-black text-white" href="/custom">Custom</Link>
+    <main className="max-w-4xl mx-auto p-6 space-y-6">
+      <h1 className="text-4xl font-extrabold tracking-tight">Anaptiras</h1>
+      <p className="text-gray-600">
+        Ghost for the soul · Crew for the laughs · Custom for events
+      </p>
+
+      <div className="flex gap-3">
+        <a className="px-4 py-2 rounded bg-black text-white" href="/ghost">Ghost</a>
+        <a className="px-4 py-2 rounded border" href="/crew">Crew</a>
+        <a className="px-4 py-2 rounded border" href="/custom">Custom</a>
       </div>
-      <div className="mt-10 border rounded-xl p-4">
+
+      {/* Ad slot placeholder stays as-is */}
+      <section className="rounded border p-4 bg-white">
         <h2 className="font-semibold mb-2">Ad Placement (Landing)</h2>
-        <div id="ad-slot-landing" className="w-full h-60 bg-gray-100 grid place-items-center">Ad slot (responsive)</div>
-      </div>
+        <div className="rounded border bg-gray-100 h-48 flex items-center justify-center">
+          Ad slot (responsive)
+        </div>
+      </section>
     </main>
-  )
+  );
 }
