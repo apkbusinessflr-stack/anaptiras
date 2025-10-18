@@ -1,0 +1,27 @@
+{
+  "appnexus": {
+    "placementId": "12345678"
+  },
+  "pubmatic": {
+    "publisherId": "99999",
+    "adSlot": "anaptiras_300x250@300x250"
+  },
+  "openx": {
+    "unit": "540000000",
+    "delDomain": "your-d.openx.net"
+  },
+  "ix": {
+    "siteId": "12345"
+  },
+  "triplelift": {
+    "inventoryCode": "anaptiras_300x250"
+  },
+  "rubicon": {
+    "accountId": "123",
+    "siteId": "456",
+    "zoneId": "789"
+  },
+  "criteo": {
+    "networkId": 12345
+  }
+}
