@@ -1,7 +1,8 @@
 // app/api/rooms/[id]/messages/route.ts
 import { NextResponse } from 'next/server';
-import { sql } from '@/src/lib/db';
-import { getOrSetAnonId } from '@/src/lib/anon';
+import { sql } from '@/lib/db';
+import { getOrSetAnonId } from '@/lib/anon';
+
 
 export async function GET(
   _req: Request,
