@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "postinstall": "node scripts/postinstall.js"
   },
   "engines": {
     "node": ">=18.18.0"
