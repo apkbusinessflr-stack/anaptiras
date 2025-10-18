@@ -9,7 +9,7 @@ export default function Custom() {
     });
     const j = await r.json();
     if (j.id) window.location.href = `/room/${j.id}`;
-    else alert('Failed to create room');
+    else alert(j?.error || 'Failed to create room');
   }
 
   return (
