@@ -8,7 +8,11 @@ export function getOrSetAnonId(): string {
   if (!id) {
     id = crypto.randomUUID();
     store.set(COOKIE, id, {
-      maxAge: 60 * 60 * 24 * 400, httpOnly: true, sameSite: 'lax', secure: true, path: '/'
+      maxAge: 60 * 60 * 24 * 400, // ~400 days
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: true,
+      path: '/'
     });
   }
   return id!;
