@@ -1,8 +1,36 @@
+// app/api/rooms/create/route.ts
+import { NextResponse } from 'next/server';
+import { sql } from '@/src/lib/db';
+import { getOrSetAnonId } from '@/src/lib/anon';
 
-import { NextResponse } from 'next/server'
-export const runtime = 'edge'
-export async function POST() {
-  // TODO: check quota: free_daily_left or last rewarded unlock
-  // Create room slug and return URL
-  return NextResponse.json({ ok: true, slug: 'room-' + Math.random().toString(36).slice(2,8) })
+type RoomType = 'ghost' | 'crew' | 'custom';
+
+export async function POST(req: Request) {
+  try {
+    const { type } = (await req.json()) as { type: RoomType };
+    if (!type || !['ghost', 'crew', 'custom'].includes(type)) {
+      return NextResponse.json({ error: 'Invalid room type' }, { status: 400 });
+    }
+
+    const anonId = getOrSetAnonId();
+
+    const rows = await sql<
+      { id: string }
+    >`
+      INSERT INTO rooms (type, created_by)
+      VALUES (${type}, (SELECT id FROM users WHERE anon_id = ${anonId}
+                        UNION ALL
+                        SELECT (INSERT INTO users (anon_id) VALUES (${anonId}) RETURNING id))
+            )
+      RETURNING id
+    `;
+
+    const roomId = rows[0]?.id;
+    if (!roomId) throw new Error('Room not created');
+
+    return NextResponse.json({ id: roomId });
+  } catch (err) {
+    console.error('rooms/create', err);
+    return NextResponse.json({ error: 'Internal error' }, { status: 500 });
+  }
 }
