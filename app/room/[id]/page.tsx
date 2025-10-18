@@ -1,4 +1,3 @@
-// app/room/[id]/page.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -31,7 +30,8 @@ export default function RoomView({ params }: { params: { id: string } }) {
         setText('');
         await load();
       } else {
-        alert('Failed to send message');
+        const j = await r.json();
+        alert(j?.error || 'Failed to send message');
       }
     } finally {
       setLoading(false);
@@ -48,7 +48,7 @@ export default function RoomView({ params }: { params: { id: string } }) {
 
       <div className="flex items-center gap-2">
         <input
-          className="input input-bordered px-3 py-2 rounded border w-full"
+          className="px-3 py-2 rounded border w-full"
           placeholder="Say something…"
           value={text}
           onChange={e => setText(e.target.value)}
@@ -84,7 +84,7 @@ export default function RoomView({ params }: { params: { id: string } }) {
       <div className="rounded border p-4 bg-white">
         <div className="text-sm font-medium mb-2">Invite friends</div>
         <div className="flex gap-2">
-          <input className="input px-3 py-2 rounded border w-full" value={shareUrl} readOnly />
+          <input className="px-3 py-2 rounded border w-full" value={shareUrl} readOnly />
           <button
             className="px-3 py-2 rounded border"
             onClick={() => navigator.clipboard.writeText(shareUrl)}
