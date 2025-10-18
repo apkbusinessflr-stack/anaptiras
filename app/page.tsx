@@ -1,4 +1,3 @@
-// app/page.tsx
 export default function Home() {
   return (
     <main className="max-w-4xl mx-auto p-6 space-y-6">
@@ -13,7 +12,6 @@ export default function Home() {
         <a className="px-4 py-2 rounded border" href="/custom">Custom</a>
       </div>
 
-      {/* Ad slot placeholder stays as-is */}
       <section className="rounded border p-4 bg-white">
         <h2 className="font-semibold mb-2">Ad Placement (Landing)</h2>
         <div className="rounded border bg-gray-100 h-48 flex items-center justify-center">
