@@ -20,10 +20,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               function gtag(){dataLayer.push(arguments);}
               gtag('consent', 'default', {
                 ad_storage: 'denied',
-                analytics_storage: 'denied',
+                analytics_storage: 'granted',   // προσωρινά granted για να γράφει GA4
                 functionality_storage: 'granted',
                 security_storage: 'granted'
-              });
+                });
+
             `,
           }}
         />
